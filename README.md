@@ -1,10 +1,11 @@
 ## **Project Overview**
 
-- Briefly describe the concept of your project.
+- Hyrule Explorer is an interactive, user-friendly webpage that allows users to explore the vast world of The Legend of Zelda: Breath of the Wild. Users will be able to browse, search, and filter through these categories, enhancing their gaming experience.
 
 ## **Project Members**
 
-- List the people a part of this group.
+- Rochelle Williams
+- Jessica Xia
 
 ## **Features**
 
@@ -13,7 +14,7 @@
 ## **Technologies Used**
 
 - List the technologies and tools used in the project:
-    - APIs
+    - Hyrule Compendium API
     - Libraries
     - Other
  
