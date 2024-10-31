@@ -1,0 +1,29 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-align: center;
+}
+
+h1 {
+    color: #3b6ea5;
+}
+
+#controls {
+    margin: 20px 0;
+}
+
+#categorySelector,
+button {
+    padding: 10px;
+    font-size: 1em;
+    margin: 5px;
+}
+
+#compendium {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+}
