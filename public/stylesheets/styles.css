@@ -27,3 +27,13 @@ button {
     gap: 15px;
     padding: 20px;
 }
+
+.box{
+    width: 300px;
+    padding: 10px;
+    background-color: #d3d3d3;
+}
+
+.title_case{
+    text-transform: capitalize;
+}
