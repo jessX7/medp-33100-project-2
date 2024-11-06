@@ -13,7 +13,7 @@ h1 {
     margin: 20px 0;
 }
 
-#categorySelector,
+#categorySelector, #locationSelector,
 button {
     padding: 10px;
     font-size: 1em;

@@ -1,7 +1,7 @@
 const api_url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/';
 const compendium = document.getElementById('compendium');
 const categorySelector = document.getElementById('categorySelector');
-const loadDataButton = document.querySelector('button');
+const locationSelector = document.getElementById('locationSelector');
 
 // get all items from the API
 async function getAllItems() {
@@ -19,6 +19,11 @@ getAllItems().then((items) => {
 
     // Add an event listener to the category selector for filtering
     categorySelector.addEventListener('change', () => {
+        filterItems(items);
+    });
+
+    // Add an event listener to the location selector for filtering
+    locationSelector.addEventListener('change', () => {
         filterItems(items);
     });
 });
@@ -56,13 +61,28 @@ function showAllItems(item) {
 // Filter items based on selected category
 function filterItems(items) {
     const selectedCategory = categorySelector.value;
-    
+    const selectedLocation = locationSelector.value;
+
     // Clear current items
     compendium.innerHTML = '';
     
-    // Show only items that match the selected category
+    // Filter items based on selected category and location
     items.forEach(item => {
-        if (item.category === selectedCategory) {
+        const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
+        
+        // Check location filter (only if location is not "Show All")
+        let locationMatch = false;
+        if (selectedLocation === 'all') {
+            locationMatch = true;
+        } else if (Array.isArray(item.common_locations)) {
+            // If item has multiple locations, check if any match
+            locationMatch = item.common_locations.includes(selectedLocation);
+        } else {
+            locationMatch = item.common_locations === selectedLocation;
+        }
+        
+        // Show item if both category and location match
+        if (categoryMatch && locationMatch) {
             showAllItems(item);
         }
     });
