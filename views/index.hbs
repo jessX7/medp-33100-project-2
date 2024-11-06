@@ -1,6 +1,7 @@
 <!--Put your HTML elements here (don't need to put <head> or <body> here. That is set in layout.hbs-->
 <h1>Hyrule Compendium</h1>
 <div id="controls">
+    <h2>Filter by Category:</h2>
     <select id="categorySelector">
         <option value="creatures">Creatures</option>
         <option value="monsters">Monsters</option>
@@ -9,6 +10,48 @@
         <option value="treasure">Treasure</option>
     </select>
     <button onclick="">Load Data</button>
+    <h2>Filter by Location:</h2>
+    <select id="locationSelector">
+        <optgroup label="Central Hyrule">
+            <option value="Hyrule Field">Hyrule Field</option>
+            <option value="Hyrule Ridge">Hyrule Ridge</option>
+            <option value="Great Hyrule Forest">Great Hyrule Forest</option>
+            <option value="Satori Mountain">Satori Mountain</option>
+        </optgroup>
+        <optgroup label="Faron">
+            <option value="Lake Hylia">Lake Hylia</option>
+            <option value="Faron Grasslands">Faron Grasslands</option>
+        </optgroup>
+        <optgroup label="Necluda">
+            <option value="West Necluda">West Necluda</option>
+            <option value="Necluda Sea">Necluda Sea</option>
+            <option value="East Necluda">East Necluda</option>
+        </optgroup>
+        <optgroup label="Gerudo">
+            <option value="Gerudo Highlands">Gerudo Highlands</option>
+            <option value="Gerudo Desert">Gerudo Desert</option>
+        </optgroup>
+        <optgroup label="Hebra">
+            <option value="Hebra Mountains">Hebra Mountains</option>
+            <option value="Tabantha Frontier">Tabantha Frontier</option>
+        </optgroup>
+        <optgroup label="Eldin">
+            <option value="Eldin Mountains">Eldin Mountains</option>
+            <option value="Eldin Canyon">Eldin Canyon</option>
+            <option value="Death Mountain">Death Mountain</option>
+        </optgroup>
+        <optgroup label="Akkala">
+            <option value="Akkala Highlands">Akkala Highlands</option>
+            <option value="Deep Akkala">Deep Akkala</option>
+            <option value="Akkala Sea">Akkala Sea</option>
+        </optgroup>
+        <optgroup label="Lanayru">
+            <option value="Lanayru Great Spring">Lanayru Great Spring</option>
+            <option value="Lanayru Sea">Lanayru Sea</option>
+            <option value="Lanayru Wetlands">Lanayru Wetlands</option>
+            <option value="Mount Lanayru">Mount Lanayru</option>
+        </optgroup>
+    </select>
 </div>
 
 <div id="compendium"></div>
