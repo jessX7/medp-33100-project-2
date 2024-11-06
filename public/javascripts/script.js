@@ -1,5 +1,7 @@
 const api_url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/';
 const compendium = document.getElementById('compendium');
+const categorySelector = document.getElementById('categorySelector');
+const loadDataButton = document.querySelector('button');
 
 // get all items from the API
 async function getAllItems() {
@@ -9,13 +11,18 @@ async function getAllItems() {
     return items;
 }
 
-getAllItems()
-    .then((items) => {
-        items.forEach(item => {
-            showAllItems(item);
-            console.log(item.category);
-        });
-    })
+getAllItems().then((items) => {
+    // Show all items initially
+    items.forEach(item => {
+        showAllItems(item);
+    });
+
+    // Add an event listener to the category selector for filtering
+    categorySelector.addEventListener('change', () => {
+        filterItems(items);
+    });
+});
+
 
 function showAllItems(item) {
     const element = document.createElement('div');
@@ -44,6 +51,21 @@ function showAllItems(item) {
         default:
             break;
     }
+}
+
+// Filter items based on selected category
+function filterItems(items) {
+    const selectedCategory = categorySelector.value;
+    
+    // Clear current items
+    compendium.innerHTML = '';
+    
+    // Show only items that match the selected category
+    items.forEach(item => {
+        if (item.category === selectedCategory) {
+            showAllItems(item);
+        }
+    });
 }
 
 //base class for all items
