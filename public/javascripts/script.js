@@ -2,6 +2,8 @@ const api_url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/';
 const compendium = document.getElementById('compendium');
 const categorySelector = document.getElementById('categorySelector');
 const locationSelector = document.getElementById('locationSelector');
+const showAllCategoriesButton = document.getElementById('showAllCategories');
+const showAllLocationsButton = document.getElementById('showAllLocations');
 
 // get all items from the API
 async function getAllItems() {
@@ -24,6 +26,16 @@ getAllItems().then((items) => {
 
     // Add an event listener to the location selector for filtering
     locationSelector.addEventListener('change', () => {
+        filterItems(items);
+    });
+
+    showAllCategoriesButton.addEventListener('click', () => {
+        categorySelector.value = 'all';
+        filterItems(items);
+    });
+
+    showAllLocationsButton.addEventListener('click', () => {
+        locationSelector.value = 'all';
         filterItems(items);
     });
 });
@@ -65,11 +77,11 @@ function filterItems(items) {
 
     // Clear current items
     compendium.innerHTML = '';
-    
+
     // Filter items based on selected category and location
     items.forEach(item => {
         const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
-        
+
         // Check location filter (only if location is not "Show All")
         let locationMatch = false;
         if (selectedLocation === 'all') {
@@ -80,7 +92,7 @@ function filterItems(items) {
         } else {
             locationMatch = item.common_locations === selectedLocation;
         }
-        
+
         // Show item if both category and location match
         if (categoryMatch && locationMatch) {
             showAllItems(item);
@@ -162,7 +174,7 @@ class Equipment extends Item {
         this.element.innerHTML = '';
 
         const nameElement = document.createElement('h3');
-        nameElement.classList.add('name','title_case');
+        nameElement.classList.add('name', 'title_case');
         nameElement.innerText = this.name;
 
         const imageElement = document.createElement('img');
@@ -170,7 +182,7 @@ class Equipment extends Item {
         imageElement.src = this.image;
 
         const categoryElement = document.createElement('p');
-        categoryElement.classList.add('category','title_case');
+        categoryElement.classList.add('category', 'title_case');
         categoryElement.innerText = 'Type: ' + this.category;
 
         const descriptionElement = document.createElement('p');
@@ -215,11 +227,11 @@ class Material extends Item {
         this.cooking = cooking;
     }
 
-    showMaterial(){
+    showMaterial() {
         this.element.innerHTML = '';
 
         const nameElement = document.createElement('h3');
-        nameElement.classList.add('name','title_case');
+        nameElement.classList.add('name', 'title_case');
         nameElement.innerText = this.name;
 
         const imageElement = document.createElement('img');
@@ -227,7 +239,7 @@ class Material extends Item {
         imageElement.src = this.image;
 
         const categoryElement = document.createElement('p');
-        categoryElement.classList.add('category','title_case');
+        categoryElement.classList.add('category', 'title_case');
         categoryElement.innerText = 'Type: ' + this.category;
 
         const descriptionElement = document.createElement('p');
@@ -247,7 +259,7 @@ class Material extends Item {
         heartsElement.innerText = 'Hearts Recovered: ' + this.hearts;
 
         const cookingElement = document.createElement('p');
-        cookingElement.classList.add('cooking','title_case');
+        cookingElement.classList.add('cooking', 'title_case');
         cookingElement.innerText = 'Cooking Effect: ' + this.cooking;
 
         this.element.appendChild(nameElement);
@@ -270,11 +282,11 @@ class Creature extends Item {
         this.hearts = hearts;
     }
 
-    showCreature(){
+    showCreature() {
         this.element.innerHTML = '';
 
         const nameElement = document.createElement('h3');
-        nameElement.classList.add('name','title_case');
+        nameElement.classList.add('name', 'title_case');
         nameElement.innerText = this.name;
 
         const imageElement = document.createElement('img');
@@ -282,7 +294,7 @@ class Creature extends Item {
         imageElement.src = this.image;
 
         const categoryElement = document.createElement('p');
-        categoryElement.classList.add('category','title_case');
+        categoryElement.classList.add('category', 'title_case');
         categoryElement.innerText = 'Type: ' + this.category;
 
         const descriptionElement = document.createElement('p');
@@ -310,7 +322,7 @@ class Creature extends Item {
         heartsElement.innerText = 'Hearts Recovered: ' + this.hearts;
 
         const cookingElement = document.createElement('p');
-        cookingElement.classList.add('cooking','title_case');
+        cookingElement.classList.add('cooking', 'title_case');
         cookingElement.innerText = 'Cooking Effect: ' + this.cooking;
 
         this.element.appendChild(nameElement);
@@ -332,7 +344,7 @@ class Treasure extends Item {
         this.drops = drops;
     }
 
-    showTreasure(){
+    showTreasure() {
         this.element.innerHTML = '';
 
         const nameElement = document.createElement('h3');

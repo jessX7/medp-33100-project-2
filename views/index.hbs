@@ -3,14 +3,21 @@
 <div id="controls">
     <h2>Filter by Category:</h2>
     <select id="categorySelector">
+        <option value="all">All Categories</option> 
         <option value="creatures">Creatures</option>
         <option value="monsters">Monsters</option>
         <option value="materials">Materials</option>
         <option value="equipment">Equipment</option>
         <option value="treasure">Treasure</option>
     </select>
+     <button id="showAllCategories">Show All Categories</button>
+
     <h2>Filter by Location:</h2>
     <select id="locationSelector">
+        <optgroup label="Miscellaneous">
+            <option value="all">All Locations</option>
+            <option value="Greater Hyrule">Greater Hyrule</option>
+        </optgroup>
         <optgroup label="Central Hyrule">
             <option value="Hyrule Castle">Hyrule Castle</option>
             <option value="Hyrule Field">Hyrule Field</option>
@@ -60,11 +67,9 @@
             <option value="Divine Beast Vah Ruta">Divine Beast Vah Ruta</option>
             <option value="Divine Beast Vah Medoh">Divine Beast Vah Medoh</option>
         </optgroup>
-        <optgroup label="Miscellaneous">
-            <option value="Greater Hyrule">Greater Hyrule</option>
-        </optgroup>
         
     </select>
+    <button id="showAllLocations">Show All Locations</button>
 </div>
 
 <div id="compendium"></div>
