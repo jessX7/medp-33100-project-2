@@ -10,16 +10,16 @@ body {
 h1 {
     color: #3b6ea5;
     font-size: 2.5em;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
 
 button {
     background-color: #3b6ea5;
     color: #ffffff;
     border: none;
-    padding: 5px 10px;
-    font-size: 1em;
+    padding: 5px 12px;
+    font-size: 0.95em;
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
@@ -48,33 +48,36 @@ button:active {
 
 #controls {
     background-color: #ffffff;
-    padding: 20px;
+    padding: 30px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 80%;
+    width: 85%;
     max-width: 800px;
-    margin: 20px auto;
+    margin: 15px auto;
     display: flex;
-    justify-content: space-between; 
-    gap: 20px; 
+    justify-content: center;
+    gap: 15px;
     text-align: left;
 }
 
 #controls h2 {
-    font-size: 1.2em;
-    color: #555;
-    margin-bottom: 10px;
+    font-size: 1.1em;
+    color: #3b6ea5;
+    margin: 0 0 10px 0;
+    width: 100%;
+    text-align: center;
 }
 
-#categorySelector, #locationSelector, #monsterSelector {
-    padding: 10px;
+#categorySelector,
+#locationSelector,
+#monsterSelector {
+    padding: 8px;
     font-size: 1em;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    box-sizing: border-box;
 }
 
 #compendium {
@@ -82,13 +85,13 @@ button:active {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
-    padding: 20px;
-    margin-top: 30px;
+    padding: 15px;
+    margin-top: 25px;
 }
 
 .box {
-    width: 300px;
-    padding: 20px;
+    width: 350px;
+    padding:  30px;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -102,10 +105,10 @@ button:active {
 
 .list-item {
     width: 100%;
-    padding: 10px;
+    padding: 8px;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
 }
@@ -113,7 +116,7 @@ button:active {
 .list-item img {
     width: 50px;
     height: 50px;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
 .title_case {
@@ -124,7 +127,7 @@ button:active {
 
 @media (max-width: 768px) {
     #controls {
-        flex-direction: column; 
+        flex-direction: column;
         align-items: center;
         width: 90%;
     }
@@ -141,7 +144,8 @@ button:active {
         font-size: 2em;
     }
 
-    #categorySelector, #locationSelector {
+    #categorySelector,
+    #locationSelector {
         max-width: 100%;
     }
 }

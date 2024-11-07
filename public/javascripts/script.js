@@ -6,7 +6,10 @@ const monsterSelector = document.getElementById('monsterSelector');
 const showAllCategoriesButton = document.getElementById('showAllCategories');
 const showAllLocationsButton = document.getElementById('showAllLocations');
 const toggleViewButton = document.getElementById('toggleView');
+const sortAlphabeticallyButton = document.getElementById('sortAlphabetically');
+
 let isListView = false;
+let isSortedAlphabetically = false;
 
 // get all items from the API
 async function getAllItems() {
@@ -23,35 +26,29 @@ getAllItems().then((items) => {
         showAllItems(item);
     });
 
-    // Add an event listener to the category selector for filtering
-    categorySelector.addEventListener('change', () => {
-        filterItems(items);
-    });
-
-    // Add an event listener to the location selector for filtering
-    locationSelector.addEventListener('change', () => {
-        filterItems(items);
-    });
-
+    // Event listeners for filters and sorting
+    categorySelector.addEventListener('change', () => filterItems(items));
+    locationSelector.addEventListener('change', () => filterItems(items));
+    monsterSelector.addEventListener('change', () => monsterFilter(items));
     showAllCategoriesButton.addEventListener('click', () => {
         categorySelector.value = 'all';
         filterItems(items);
     });
-
     showAllLocationsButton.addEventListener('click', () => {
         locationSelector.value = 'all';
         filterItems(items);
     });
-
     toggleViewButton.addEventListener('click', () => {
         isListView = !isListView;
         toggleViewButton.innerText = isListView ? 'Switch to Card View' : 'Switch to List View';
         filterItems(items);
     });
-
-    monsterSelector.addEventListener('change', ()=>{
-        monsterFilter(items);
-    })
+    
+    sortAlphabeticallyButton.addEventListener('click', () => {
+        isSortedAlphabetically = !isSortedAlphabetically;
+        sortAlphabeticallyButton.innerText = isSortedAlphabetically ? 'Sort Normally' : 'Sort Alphabetically';
+        filterItems(items);
+    });
 });
 
 
@@ -95,26 +92,19 @@ function filterItems(items) {
 
 
     // Filter items based on selected category and location
-    items.forEach(item => {
+    let filteredItems = items.filter(item => {
         const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
-
-        // Check location filter (only if location is not "Show All")
-        let locationMatch = false;
-        if (selectedLocation === 'all') {
-            locationMatch = true;
-        } else if (Array.isArray(item.common_locations)) {
-            // If item has multiple locations, check if any match
-            locationMatch = item.common_locations.includes(selectedLocation);
-        } else {
-            locationMatch = item.common_locations === selectedLocation;
-        }
-
-        // Show item if both category and location match
-        if (categoryMatch && locationMatch) {
-            showAllItems(item);
-        }
-
+        const locationMatch = selectedLocation === 'all' || (Array.isArray(item.common_locations) ? item.common_locations.includes(selectedLocation) : item.common_locations === selectedLocation);
+        return categoryMatch && locationMatch;
     });
+
+    // Sort items alphabetically if sorting is enabled
+    if (isSortedAlphabetically) {
+        filteredItems.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    // Show filtered (and sorted) items
+    filteredItems.forEach(showAllItems);
 }
 
 function monsterFilter(items) {
@@ -124,7 +114,7 @@ function monsterFilter(items) {
         switch (selectedMonster) {
             case 'common':
                 if ((item.name.includes('chuchu') || item.name.includes('keese') || item.name.includes('octorok') || item.name.includes('robe') ||
-                item.name.includes('pebblit') || item.name.includes('blin') || item.name.includes('liza') || item.name.includes('yiga')) && item.category == 'monsters') {
+                    item.name.includes('pebblit') || item.name.includes('blin') || item.name.includes('liza') || item.name.includes('yiga')) && item.category == 'monsters') {
                     showAllItems(item);
                 }
                 break;
@@ -134,8 +124,8 @@ function monsterFilter(items) {
                 }
                 break;
             case 'sub':
-                if (item.category == 'monsters' && (item.name.includes('talus') || item.name.includes('nox') || 
-                item.name.includes('mold')|| item.name.includes('lynel'))) {
+                if (item.category == 'monsters' && (item.name.includes('talus') || item.name.includes('nox') ||
+                    item.name.includes('mold') || item.name.includes('lynel'))) {
                     showAllItems(item);
                 }
                 break;
