@@ -2,6 +2,7 @@ const api_url = 'https://botw-compendium.herokuapp.com/api/v3/compendium/';
 const compendium = document.getElementById('compendium');
 const categorySelector = document.getElementById('categorySelector');
 const locationSelector = document.getElementById('locationSelector');
+const monsterSelector = document.getElementById('monsterSelector');
 const showAllCategoriesButton = document.getElementById('showAllCategories');
 const showAllLocationsButton = document.getElementById('showAllLocations');
 const toggleViewButton = document.getElementById('toggleView');
@@ -47,6 +48,10 @@ getAllItems().then((items) => {
         toggleViewButton.innerText = isListView ? 'Switch to Card View' : 'Switch to List View';
         filterItems(items);
     });
+
+    monsterSelector.addEventListener('change', ()=>{
+        monsterFilter(items);
+    })
 });
 
 
@@ -88,6 +93,7 @@ function filterItems(items) {
     // Clear current items
     compendium.innerHTML = '';
 
+
     // Filter items based on selected category and location
     items.forEach(item => {
         const categoryMatch = selectedCategory === 'all' || item.category === selectedCategory;
@@ -107,7 +113,46 @@ function filterItems(items) {
         if (categoryMatch && locationMatch) {
             showAllItems(item);
         }
+
     });
+}
+
+function monsterFilter(items) {
+    compendium.innerHTML = '';
+    const selectedMonster = monsterSelector.value;
+    items.forEach(item => {
+        switch (selectedMonster) {
+            case 'common':
+                if ((item.name.includes('chuchu') || item.name.includes('keese') || item.name.includes('octorok') || item.name.includes('robe') ||
+                item.name.includes('pebblit') || item.name.includes('blin') || item.name.includes('liza') || item.name.includes('yiga')) && item.category == 'monsters') {
+                    showAllItems(item);
+                }
+                break;
+            case 'guardian':
+                if (item.category == 'monsters' && (item.name.includes('guardian'))) {
+                    showAllItems(item);
+                }
+                break;
+            case 'sub':
+                if (item.category == 'monsters' && (item.name.includes('talus') || item.name.includes('nox') || 
+                item.name.includes('mold')|| item.name.includes('lynel'))) {
+                    showAllItems(item);
+                }
+                break;
+            case 'boss':
+                if (item.category == 'monsters' && (item.name.includes('kohga') || item.name.includes('monk') || item.name.includes('ganon'))) {
+                    showAllItems(item);
+                }
+                break;
+            case 'all':
+                if (item.category == 'monsters') {
+                    showAllItems(item);
+                }
+                break;
+            default:
+                break;
+        }
+    })
 }
 
 //base class for all items

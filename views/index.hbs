@@ -10,7 +10,7 @@
         <option value="equipment">Equipment</option>
         <option value="treasure">Treasure</option>
     </select>
-     <button id="showAllCategories">Show All Categories</button>
+    <button id="showAllCategories">Show All Categories</button>
 
     <h2>Filter by Location:</h2>
     <select id="locationSelector">
@@ -39,6 +39,7 @@
         <optgroup label="Gerudo">
             <option value="Gerudo Highlands">Gerudo Highlands</option>
             <option value="Gerudo Desert">Gerudo Desert</option>
+            <option value="Yiga Clan Hideout">Yiga Clan Hideout</option>
         </optgroup>
         <optgroup label="Hebra">
             <option value="Hebra Mountains">Hebra Mountains</option>
@@ -70,7 +71,17 @@
         
     </select>
     <button id="showAllLocations">Show All Locations</button>
+    <h2>Filter Monsters:</h2>
+    <select id="monsterSelector">
+        <option value="all">Show All Monsters</option>
+        <option value="common">Common Enemies</option>
+        <option value="guardian">Guardians</option>
+        <option value="sub">Sub-Bosses</option>
+        <option value="boss">Bosses</option>
+    </select>
     <button id="toggleView">Switch to Card View</button>
+    
 </div>
 
+<div id="monsterButton"></div>
 <div id="compendium"></div>
