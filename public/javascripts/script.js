@@ -4,12 +4,15 @@ const categorySelector = document.getElementById('categorySelector');
 const locationSelector = document.getElementById('locationSelector');
 const showAllCategoriesButton = document.getElementById('showAllCategories');
 const showAllLocationsButton = document.getElementById('showAllLocations');
+const toggleViewButton = document.getElementById('toggleView');
+let isListView = false;
 
 // get all items from the API
 async function getAllItems() {
     const response = await fetch(api_url + 'all');
     const data = await response.json();
     const items = data.data;
+    toggleViewButton.innerText = isListView ? 'Switch to Card View' : 'Switch to List View';
     return items;
 }
 
@@ -38,12 +41,19 @@ getAllItems().then((items) => {
         locationSelector.value = 'all';
         filterItems(items);
     });
+
+    toggleViewButton.addEventListener('click', () => {
+        isListView = !isListView;
+        toggleViewButton.innerText = isListView ? 'Switch to Card View' : 'Switch to List View';
+        filterItems(items);
+    });
 });
 
 
 function showAllItems(item) {
     const element = document.createElement('div');
     compendium.appendChild(element);
+    element.classList.add(isListView ? 'list-item' : 'box');
     switch (item.category) {
         case 'monsters':
             item = new Monster(element, item.name, item.image, item.category, item.description, item.common_locations, item.dlc, item.drops);
